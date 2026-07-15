@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://fc38wept4y60"]
+
+[ext_resource type="Texture2D" uid="uid://btpsoesgpbfyx" path="res://assets/sprites/Cave Background-Sheet.png" id="1_bkp1e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0upk"]
+atlas = ExtResource("1_bkp1e")
+region = Rect2(0, 0, 270, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jougr"]
+atlas = ExtResource("1_bkp1e")
+region = Rect2(270, 0, 270, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbsqf"]
+atlas = ExtResource("1_bkp1e")
+region = Rect2(540, 0, 270, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wisxt"]
+atlas = ExtResource("1_bkp1e")
+region = Rect2(810, 0, 270, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wax1t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0upk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jougr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbsqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wisxt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Background" type="Node2D" unique_id=528456743]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=621273957]
+sprite_frames = SubResource("SpriteFrames_wax1t")
+autoplay = "default"
+frame_progress = 0.13947704
