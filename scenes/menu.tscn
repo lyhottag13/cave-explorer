@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://c5bkwwy3hxu0y"]
 
+[ext_resource type="Script" uid="uid://b10pb8uwnuip" path="res://scripts/menu.gd" id="1_con2f"]
 [ext_resource type="PackedScene" uid="uid://de4w73fy436aa" path="res://scenes/game.tscn" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://5xldf5ogck01" path="res://assets/fonts/DTM-Mono.otf" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://cxw4br34xk1ww" path="res://assets/images/creepy holes.webp" id="4_mhnvy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
 bg_color = Color(0.771875, 0.21708985, 0, 1)
@@ -13,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_con2f")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=651569741]
 layout_mode = 1
@@ -58,19 +61,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1440936982]
+[node name="Bag" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1440936982]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
 text = "Bag"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1250555564]
+[node name="Mag" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1250555564]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
-text = "Mag"
+text = "Cam"
 
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1374586192]
+[node name="Map" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1374586192]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
@@ -97,3 +100,17 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("1_yqeox")
 text = "* Something crazy is happening! Better look out."
 autowrap_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=800554336]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1903394232]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_mhnvy")
+expand_mode = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Mag" to="." method="_on_mag_pressed"]
