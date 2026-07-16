@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bk2aqvrso5ofl"]
+
+[ext_resource type="Script" uid="uid://cs673vjjsqjrg" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="PackedScene" uid="uid://c3sn0pog7uyti" path="res://scenes/transition.tscn" id="2_7vrkn"]
+
+[node name="Main Menu" type="Control" unique_id=1891391763]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=650084393]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_right = 91.0
+grow_vertical = 0
+
+[node name="StartGame" type="Button" parent="VBoxContainer" unique_id=30680817]
+layout_mode = 2
+text = "Enter Cave"
+
+[node name="EndGame" type="Button" parent="VBoxContainer" unique_id=1314294277]
+layout_mode = 2
+text = "Leave"
+
+[node name="Transition" parent="." unique_id=452866467 instance=ExtResource("2_7vrkn")]
+layout_mode = 1
+
+[connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/EndGame" to="." method="_on_end_game_pressed"]

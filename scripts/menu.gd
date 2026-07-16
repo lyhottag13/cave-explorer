@@ -2,8 +2,10 @@ extends Control
 
 @onready var mag: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Mag
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var transition: Control = $Transition
 
 func _ready() -> void:
+	transition.fade_in()
 	canvas_layer.hide()
 
 func _process(_delta: float) -> void:
@@ -11,8 +13,5 @@ func _process(_delta: float) -> void:
 
 func _on_mag_pressed() -> void:
 	canvas_layer.show()
-	await sleep(1)
+	await Utils.sleep(1)
 	canvas_layer.hide()
-
-func sleep(time: float):
-	return get_tree().create_timer(time).timeout

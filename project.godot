@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Cave Explorer"
-run/main_scene="uid://c5bkwwy3hxu0y"
+run/main_scene="uid://bk2aqvrso5ofl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Utils="*uid://c6eur2t124n6y"
 
 [display]
 

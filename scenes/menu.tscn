@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://de4w73fy436aa" path="res://scenes/game.tscn" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://5xldf5ogck01" path="res://assets/fonts/DTM-Mono.otf" id="1_yqeox"]
 [ext_resource type="Texture2D" uid="uid://cxw4br34xk1ww" path="res://assets/images/creepy holes.webp" id="4_mhnvy"]
+[ext_resource type="PackedScene" uid="uid://c3sn0pog7uyti" path="res://scenes/transition.tscn" id="5_4ytvr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
 bg_color = Color(0.771875, 0.21708985, 0, 1)
@@ -112,5 +113,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_mhnvy")
 expand_mode = 1
+
+[node name="Transition" parent="." unique_id=452866467 instance=ExtResource("5_4ytvr")]
+layout_mode = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Mag" to="." method="_on_mag_pressed"]
