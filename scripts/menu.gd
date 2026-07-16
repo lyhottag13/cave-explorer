@@ -4,10 +4,6 @@ extends Control
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var transition: Control = $Transition
 
-func _ready() -> void:
-	transition.fade_in()
-	canvas_layer.hide()
-
 func _process(_delta: float) -> void:
 	pass
 
