@@ -1,14 +1,20 @@
 [gd_scene format=3 uid="uid://c5bkwwy3hxu0y"]
 
 [ext_resource type="Script" uid="uid://b10pb8uwnuip" path="res://scripts/menu.gd" id="1_con2f"]
-[ext_resource type="PackedScene" uid="uid://de4w73fy436aa" path="res://scenes/game.tscn" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://5xldf5ogck01" path="res://assets/fonts/DTM-Mono.otf" id="1_yqeox"]
 [ext_resource type="Texture2D" uid="uid://cxw4br34xk1ww" path="res://assets/images/creepy holes.webp" id="4_mhnvy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_con2f"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
 bg_color = Color(0.771875, 0.21708985, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhnvy"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="Menu" type="Control" unique_id=744743626]
+z_index = -100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,75 +23,59 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_con2f")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=651569741]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2101553293]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1802399977]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1802399977]
 custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 318.0
+offset_bottom = 178.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1719412101]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1719412101]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=827748646]
+[node name="GameHole" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=156984709]
+custom_minimum_size = Vector2(270, 0)
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer" unique_id=506214505]
-disable_3d = true
-handle_input_locally = false
-size = Vector2i(270, 100)
-size_2d_override = Vector2i(500, 1000)
-render_target_update_mode = 4
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=635447682]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_con2f")
 
-[node name="Game" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=2136221372 instance=ExtResource("1_vjb58")]
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1189166305]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer" unique_id=1189166305]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="Bag" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1440936982]
+[node name="Bag" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1440936982]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
 text = "Bag"
 
-[node name="Mag" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1250555564]
+[node name="Mag" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1250555564]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
 text = "Cam"
 
-[node name="Map" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1374586192]
+[node name="Map" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1374586192]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
 text = "Map"
 
-[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer" unique_id=419927720]
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=419927720]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mhnvy")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel" unique_id=413049507]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Panel" unique_id=413049507]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,7 +85,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Panel/MarginContainer" unique_id=1271351170]
+[node name="Label" type="Label" parent="VBoxContainer/Panel/MarginContainer" unique_id=1271351170]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -104,6 +94,7 @@ text = "* Something crazy is happening! Better look out."
 autowrap_mode = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=800554336]
+layer = 2
 visible = false
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1903394232]
@@ -115,4 +106,4 @@ grow_vertical = 2
 texture = ExtResource("4_mhnvy")
 expand_mode = 1
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Mag" to="." method="_on_mag_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Mag" to="." method="_on_mag_pressed"]

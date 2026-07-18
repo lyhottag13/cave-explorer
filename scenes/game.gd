@@ -11,10 +11,10 @@ var room_data: Array[Dictionary] = [
 	{back = 2}
 ]
 
-@onready var left: Button = $CanvasLayer/Control/Left
-@onready var forward: Button = $CanvasLayer/Control/Forward
-@onready var right: Button = $CanvasLayer/Control/Right
-@onready var back: Button = $CanvasLayer/Control/Back
+@onready var left: Button = %Left
+@onready var forward: Button = %Forward
+@onready var right: Button = %Right
+@onready var back: Button = %Back
 
 var rooms: Array[Level] = []
 

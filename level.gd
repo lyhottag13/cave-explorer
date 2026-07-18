@@ -7,9 +7,6 @@ var level_connections: Dictionary = {}
 @onready var middle_sprite: Sprite2D = $Middle
 @onready var right_sprite: Sprite2D = $Right
 
-func _ready() -> void:
-	print(left_sprite, $Left)
-
 func setup(connections: Dictionary) -> void:
 	level_connections = connections
 	left_sprite.visible = connections.has("left")

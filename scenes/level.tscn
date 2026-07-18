@@ -57,7 +57,7 @@ position = Vector2(135, 50)
 sprite_frames = SubResource("SpriteFrames_8c41q")
 animation = &"flames"
 autoplay = "flames"
-frame_progress = 0.706784
+frame_progress = 0.5460322
 
 [node name="Left" type="Sprite2D" parent="." unique_id=707568901]
 position = Vector2(119, 78.5)
