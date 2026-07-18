@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://jmcyftqrnl7m"]
+
+[ext_resource type="Script" uid="uid://bgrja7imjfdqv" path="res://level.gd" id="1_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://4yg3u075rpqx" path="res://assets/sprites/CAVE-Sheet.png" id="2_w8frs"]
+[ext_resource type="Texture2D" uid="uid://coagx3yhcy34w" path="res://assets/sprites/left.png" id="3_ppgk2"]
+[ext_resource type="Texture2D" uid="uid://d38ldowes8v2h" path="res://assets/sprites/middle.png" id="4_2r41h"]
+[ext_resource type="Texture2D" uid="uid://c0eaqly4mmyw8" path="res://assets/sprites/right.png" id="5_klq6b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx8sn"]
+atlas = ExtResource("2_w8frs")
+region = Rect2(0, 0, 270, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppgk2"]
+atlas = ExtResource("2_w8frs")
+region = Rect2(270, 0, 270, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r41h"]
+atlas = ExtResource("2_w8frs")
+region = Rect2(540, 0, 270, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klq6b"]
+atlas = ExtResource("2_w8frs")
+region = Rect2(810, 0, 270, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b121j"]
+atlas = ExtResource("2_w8frs")
+region = Rect2(1080, 0, 270, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8c41q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx8sn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppgk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r41h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klq6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b121j")
+}],
+"loop": true,
+"name": &"flames",
+"speed": 5.0
+}]
+
+[node name="Level" type="Node2D" unique_id=1335029594]
+script = ExtResource("1_w7c3h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1017692925]
+position = Vector2(135, 50)
+sprite_frames = SubResource("SpriteFrames_8c41q")
+animation = &"flames"
+autoplay = "flames"
+frame_progress = 0.706784
+
+[node name="Left" type="Sprite2D" parent="." unique_id=707568901]
+position = Vector2(119, 78.5)
+texture = ExtResource("3_ppgk2")
+
+[node name="Middle" type="Sprite2D" parent="." unique_id=1778026556]
+position = Vector2(182, 79.5)
+texture = ExtResource("4_2r41h")
+
+[node name="Right" type="Sprite2D" parent="." unique_id=568212781]
+position = Vector2(237, 80.5)
+texture = ExtResource("5_klq6b")

@@ -1,21 +1,27 @@
 [gd_scene format=3 uid="uid://de4w73fy436aa"]
 
+[ext_resource type="Script" uid="uid://cs2iuf2ahdn12" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dbq0t68a3xbhe" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://fc38wept4y60" path="res://scenes/background.tscn" id="1_yqjtg"]
 [ext_resource type="AudioStream" uid="uid://creptov84hwoc" path="res://assets/sounds/exploration_music.mp3" id="3_lnu2h"]
 
 [node name="Game" type="Node2D" unique_id=2136221372]
+script = ExtResource("1_lbhrr")
 
 [node name="Background" parent="." unique_id=528456743 instance=ExtResource("1_yqjtg")]
+visible = false
 position = Vector2(135, 50)
 
 [node name="Player" parent="." unique_id=38243948 instance=ExtResource("1_uwrxv")]
+z_index = 1
 position = Vector2(56, 68)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=141538222]
 stream = ExtResource("3_lnu2h")
 autoplay = true
 parameters/looping = true
+
+[node name="LevelContainer" type="Node2D" parent="." unique_id=1211372423]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1944008722]
 
@@ -30,10 +36,10 @@ size_flags_horizontal = 0
 
 [node name="Forward" type="Button" parent="CanvasLayer/Control" unique_id=941350130]
 layout_mode = 0
-offset_left = 190.0
-offset_top = 8.0
-offset_right = 215.0
-offset_bottom = 23.0
+offset_left = 189.0
+offset_top = 7.0
+offset_right = 214.0
+offset_bottom = 22.0
 theme_override_font_sizes/font_size = 4
 text = "Forward"
 
@@ -63,3 +69,8 @@ offset_right = 211.0
 offset_bottom = 100.0
 theme_override_font_sizes/font_size = 4
 text = "Back"
+
+[connection signal="pressed" from="CanvasLayer/Control/Forward" to="." method="_on_forward_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Back" to="." method="_on_back_pressed"]

@@ -51,9 +51,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer" unique_id=506214505]
+disable_3d = true
 handle_input_locally = false
 size = Vector2i(270, 100)
-render_target_update_mode = 4
+size_2d_override = Vector2i(500, 1000)
 
 [node name="Game" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=2136221372 instance=ExtResource("1_vjb58")]
 
