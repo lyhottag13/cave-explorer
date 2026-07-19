@@ -1,12 +1,16 @@
 extends Control
 
-@onready var mag: Button = %Mag
+signal act
+
+@onready var act_button: Button = %Act
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var text_label: Label = %TextLabel
 
 func _process(_delta: float) -> void:
 	pass
 
-func _on_mag_pressed() -> void:
-	canvas_layer.show()
-	await Utils.sleep(1)
-	canvas_layer.hide()
+func _on_act_pressed() -> void:
+	act.emit()
+
+func show_text(text: String) -> void:
+	text_label.text = "* " + text

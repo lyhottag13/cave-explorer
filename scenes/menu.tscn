@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b10pb8uwnuip" path="res://scripts/menu.gd" id="1_con2f"]
 [ext_resource type="FontFile" uid="uid://5xldf5ogck01" path="res://assets/fonts/DTM-Mono.otf" id="1_yqeox"]
-[ext_resource type="Texture2D" uid="uid://cxw4br34xk1ww" path="res://assets/images/creepy holes.webp" id="4_mhnvy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_con2f"]
 bg_color = Color(0, 0, 0, 1)
@@ -56,12 +55,12 @@ theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
 text = "Bag"
 
-[node name="Mag" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1250555564]
+[node name="Act" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1250555564]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
-text = "Cam"
+text = "Act"
 
 [node name="Map" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1374586192]
 unique_name_in_owner = true
@@ -85,7 +84,8 @@ grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 
-[node name="Label" type="Label" parent="VBoxContainer/Panel/MarginContainer" unique_id=1271351170]
+[node name="TextLabel" type="Label" parent="VBoxContainer/Panel/MarginContainer" unique_id=1271351170]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -93,17 +93,4 @@ theme_override_fonts/font = ExtResource("1_yqeox")
 text = "* Something crazy is happening! Better look out."
 autowrap_mode = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=800554336]
-layer = 2
-visible = false
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1903394232]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_mhnvy")
-expand_mode = 1
-
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Mag" to="." method="_on_mag_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Act" to="." method="_on_act_pressed"]

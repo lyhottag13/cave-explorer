@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://jmcyftqrnl7m"]
 
 [ext_resource type="Script" uid="uid://bgrja7imjfdqv" path="res://level.gd" id="1_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://d3hgb0d3cu1co" path="res://assets/sprites/creepy.png" id="2_2r41h"]
 [ext_resource type="Texture2D" uid="uid://4yg3u075rpqx" path="res://assets/sprites/CAVE-Sheet.png" id="2_w8frs"]
 [ext_resource type="Texture2D" uid="uid://coagx3yhcy34w" path="res://assets/sprites/left.png" id="3_ppgk2"]
 [ext_resource type="Texture2D" uid="uid://d38ldowes8v2h" path="res://assets/sprites/middle.png" id="4_2r41h"]
@@ -30,6 +31,14 @@ region = Rect2(1080, 0, 270, 100)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_2r41h")
+}],
+"loop": true,
+"name": &"creepy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mx8sn")
 }, {
 "duration": 1.0,
@@ -52,12 +61,11 @@ animations = [{
 [node name="Level" type="Node2D" unique_id=1335029594]
 script = ExtResource("1_w7c3h")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1017692925]
+[node name="Background" type="AnimatedSprite2D" parent="." unique_id=1017692925]
 position = Vector2(135, 50)
 sprite_frames = SubResource("SpriteFrames_8c41q")
 animation = &"flames"
 autoplay = "flames"
-frame_progress = 0.5460322
 
 [node name="Left" type="Sprite2D" parent="." unique_id=707568901]
 position = Vector2(119, 78.5)

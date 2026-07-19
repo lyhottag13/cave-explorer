@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://fc38wept4y60" path="res://scenes/background.tscn" id="1_yqjtg"]
 [ext_resource type="AudioStream" uid="uid://creptov84hwoc" path="res://assets/sounds/exploration_music.mp3" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://c5bkwwy3hxu0y" path="res://scenes/menu.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://ojp7t37w8ug4" path="res://scenes/puzzle_menu.tscn" id="6_p57ef"]
 
 [node name="Game" type="Node2D" unique_id=2136221372]
 script = ExtResource("1_lbhrr")
@@ -35,7 +36,8 @@ position = Vector2(135, 50)
 z_index = 1
 position = Vector2(56, 68)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=141538222]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=141538222]
+unique_name_in_owner = true
 stream = ExtResource("3_lnu2h")
 autoplay = true
 parameters/looping = true
@@ -54,6 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Menu" parent="CanvasLayer/UI" unique_id=744743626 instance=ExtResource("5_iywne")]
+unique_name_in_owner = true
 layout_mode = 1
 
 [node name="Buttons" type="Control" parent="CanvasLayer/UI" unique_id=727562961]
@@ -69,29 +72,29 @@ size_flags_horizontal = 0
 [node name="Forward" type="Button" parent="CanvasLayer/UI/Buttons" unique_id=941350130]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 189.0
-offset_top = 7.0
-offset_right = 214.0
-offset_bottom = 22.0
+offset_left = 167.0
+offset_top = 35.0
+offset_right = 192.0
+offset_bottom = 50.0
 theme_override_font_sizes/font_size = 4
 text = "Forward"
 
 [node name="Right" type="Button" parent="CanvasLayer/UI/Buttons" unique_id=1505549595]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 251.0
-offset_top = 40.0
-offset_right = 270.0
-offset_bottom = 55.0
+offset_left = 229.0
+offset_top = 43.0
+offset_right = 248.0
+offset_bottom = 58.0
 theme_override_font_sizes/font_size = 4
 text = "Right"
 
 [node name="Left" type="Button" parent="CanvasLayer/UI/Buttons" unique_id=1367166408]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 130.0
+offset_left = 114.0
 offset_top = 41.0
-offset_right = 146.0
+offset_right = 130.0
 offset_bottom = 56.0
 theme_override_font_sizes/font_size = 4
 text = "Left"
@@ -99,14 +102,21 @@ text = "Left"
 [node name="Back" type="Button" parent="CanvasLayer/UI/Buttons" unique_id=1560689510]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 193.0
-offset_top = 85.0
-offset_right = 211.0
-offset_bottom = 100.0
+offset_left = 51.0
+offset_top = 18.0
+offset_right = 69.0
+offset_bottom = 33.0
 theme_override_font_sizes/font_size = 4
 text = "Back"
 
+[node name="PuzzleMenu" parent="CanvasLayer/UI" unique_id=1020153591 instance=ExtResource("6_p57ef")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="act" from="CanvasLayer/UI/Menu" to="." method="_on_menu_act"]
 [connection signal="pressed" from="CanvasLayer/UI/Buttons/Forward" to="." method="_on_forward_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Buttons/Right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Buttons/Left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Buttons/Back" to="." method="_on_back_pressed"]
+[connection signal="combo_checked" from="CanvasLayer/UI/PuzzleMenu" to="." method="_on_puzzle_menu_combo_checked"]

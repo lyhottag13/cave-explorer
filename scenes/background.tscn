@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://fc38wept4y60"]
 
-[ext_resource type="Texture2D" uid="uid://btpsoesgpbfyx" path="res://assets/sprites/Cave Background-Sheet.png" id="1_bkp1e"]
+[ext_resource type="Texture2D" uid="uid://4yg3u075rpqx" path="res://assets/sprites/CAVE-Sheet.png" id="1_bkp1e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y0upk"]
 atlas = ExtResource("1_bkp1e")
@@ -18,6 +18,10 @@ region = Rect2(540, 0, 270, 100)
 atlas = ExtResource("1_bkp1e")
 region = Rect2(810, 0, 270, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wax1t"]
+atlas = ExtResource("1_bkp1e")
+region = Rect2(1080, 0, 270, 100)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wax1t"]
 animations = [{
 "frames": [{
@@ -32,6 +36,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wisxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wax1t")
 }],
 "loop": true,
 "name": &"default",
