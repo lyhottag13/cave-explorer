@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cs673vjjsqjrg" path="res://main_menu.gd" id="1_06t4h"]
 [ext_resource type="FontFile" uid="uid://5xldf5ogck01" path="res://assets/fonts/DTM-Mono.otf" id="2_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://bftyyjtx7od46" path="res://assets/sprites/Main Menu.png" id="2_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://bieuh81k7wi2c" path="res://assets/sprites/Main Menu Clouds.png" id="2_glbon"]
 [ext_resource type="AudioStream" uid="uid://ct0d1htcvj86k" path="res://assets/sounds/Light Breeze Field Sound FX.wav" id="4_jix8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
@@ -17,7 +18,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06t4h")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1208507255]
+[node name="Background" type="Control" parent="." unique_id=1468302436]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Parallax2D" type="Parallax2D" parent="Background" unique_id=726536578]
+repeat_size = Vector2(320, 0)
+autoscroll = Vector2(10, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=1983738681]
+position = Vector2(160, 57)
+texture = ExtResource("2_glbon")
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1208507255]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 180.0
