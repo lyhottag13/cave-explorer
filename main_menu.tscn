@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://bk2aqvrso5ofl"]
 
 [ext_resource type="Script" uid="uid://cs673vjjsqjrg" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="FontFile" uid="uid://5xldf5ogck01" path="res://assets/fonts/DTM-Mono.otf" id="2_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://bftyyjtx7od46" path="res://assets/sprites/Main Menu.png" id="2_fu7sn"]
+[ext_resource type="AudioStream" uid="uid://ct0d1htcvj86k" path="res://assets/sounds/Light Breeze Field Sound FX.wav" id="4_jix8l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+bg_color = Color(0.86, 0.4859, 0.1118, 0)
 
 [node name="Main Menu" type="Control" unique_id=1891391763]
 layout_mode = 3
@@ -11,22 +17,63 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06t4h")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1208507255]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("2_fu7sn")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=650084393]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -66.0
-offset_right = 91.0
+offset_left = 12.0
+offset_top = -54.0
+offset_right = 132.0
+offset_bottom = -10.0
 grow_vertical = 0
 
 [node name="StartGame" type="Button" parent="VBoxContainer" unique_id=30680817]
+custom_minimum_size = Vector2(120, 20)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fu7sn")
 text = "Enter Cave"
+alignment = 0
 
 [node name="EndGame" type="Button" parent="VBoxContainer" unique_id=1314294277]
+custom_minimum_size = Vector2(120, 20)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fu7sn")
 text = "Leave"
+alignment = 0
+
+[node name="Label" type="Label" parent="." unique_id=1650592834]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -148.0
+offset_top = 4.0
+offset_right = 148.0
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95000005, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/font = ExtResource("2_7vrkn")
+theme_override_font_sizes/font_size = 38
+text = "CAVE EXPLORER"
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=2006080750]
+stream = ExtResource("4_jix8l")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/EndGame" to="." method="_on_end_game_pressed"]

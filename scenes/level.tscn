@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://coagx3yhcy34w" path="res://assets/sprites/left.png" id="3_ppgk2"]
 [ext_resource type="Texture2D" uid="uid://d38ldowes8v2h" path="res://assets/sprites/middle.png" id="4_2r41h"]
 [ext_resource type="Texture2D" uid="uid://c0eaqly4mmyw8" path="res://assets/sprites/right.png" id="5_klq6b"]
+[ext_resource type="Texture2D" uid="uid://dx42rn0aiq8xo" path="res://assets/sprites/Debris.png" id="7_klq6b"]
+[ext_resource type="Texture2D" uid="uid://d4h70ebt7y6rj" path="res://assets/sprites/Locked Door.png" id="8_8c41q"]
+[ext_resource type="Texture2D" uid="uid://b02gv4k1h8c6a" path="res://assets/sprites/Locked Door Open.png" id="9_olg7q"]
+[ext_resource type="Texture2D" uid="uid://dsbgqr1ysr6ys" path="res://assets/sprites/Dynamite Lit.png" id="10_t1rx8"]
+[ext_resource type="Texture2D" uid="uid://du845h4itxfpd" path="res://assets/sprites/Dynamite Unlit.png" id="11_8iemx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mx8sn"]
 atlas = ExtResource("2_w8frs")
@@ -58,6 +63,62 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1rx8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_8c41q")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_olg7q")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64w2a"]
+atlas = ExtResource("10_t1rx8")
+region = Rect2(0, 0, 40, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpun6"]
+atlas = ExtResource("10_t1rx8")
+region = Rect2(40, 0, 40, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc255"]
+atlas = ExtResource("10_t1rx8")
+region = Rect2(80, 0, 40, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_arp2o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64w2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpun6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wc255")
+}],
+"loop": false,
+"name": &"lit",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_8iemx")
+}],
+"loop": true,
+"name": &"unlit",
+"speed": 5.0
+}]
+
 [node name="Level" type="Node2D" unique_id=1335029594]
 script = ExtResource("1_w7c3h")
 
@@ -68,13 +129,34 @@ animation = &"flames"
 autoplay = "flames"
 
 [node name="Left" type="Sprite2D" parent="." unique_id=707568901]
+visible = false
 position = Vector2(119, 78.5)
 texture = ExtResource("3_ppgk2")
 
 [node name="Middle" type="Sprite2D" parent="." unique_id=1778026556]
+visible = false
 position = Vector2(182, 79.5)
 texture = ExtResource("4_2r41h")
 
 [node name="Right" type="Sprite2D" parent="." unique_id=568212781]
+visible = false
 position = Vector2(237, 80.5)
 texture = ExtResource("5_klq6b")
+
+[node name="Debris" type="Sprite2D" parent="." unique_id=1364337891]
+visible = false
+position = Vector2(178, 71)
+texture = ExtResource("7_klq6b")
+
+[node name="LockedDoor" type="AnimatedSprite2D" parent="." unique_id=794848840]
+visible = false
+position = Vector2(182, 79)
+sprite_frames = SubResource("SpriteFrames_t1rx8")
+animation = &"locked"
+autoplay = "locked"
+
+[node name="Dynamite" type="AnimatedSprite2D" parent="." unique_id=132682526]
+position = Vector2(181, 85)
+sprite_frames = SubResource("SpriteFrames_arp2o")
+animation = &"unlit"
+autoplay = "unlit"
