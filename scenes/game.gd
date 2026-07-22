@@ -66,6 +66,7 @@ func _ready() -> void:
 	rooms[current_room_index].show()
 	draw_buttons(current_room_index)
 	rooms[9].the_door_pressed.connect(door_pressed)
+	menu.show_text("Time to explore...")
 
 func _process(_delta: float) -> void:
 	if can_move:
@@ -144,7 +145,8 @@ func show_puzzle():
 	can_move = false
 
 func handle_final_room(new_room_index: int) -> void:
-	music.stop()
+	music.stream = AudioStreamOggVorbis.load_from_file("res://assets/sounds/Man_music.ogg")
+	music.play()
 	menu.show_text("")
 	rooms[current_room_index].hide()
 	current_room_index = new_room_index

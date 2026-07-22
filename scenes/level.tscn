@@ -253,7 +253,7 @@ sprite_frames = SubResource("SpriteFrames_3ies3")
 animation = &"slot1"
 
 [node name="TheDoor" type="TextureButton" parent="." unique_id=1195397559]
-z_index = 100
+z_index = 2
 offset_left = 164.0
 offset_top = 60.0
 offset_right = 199.0
