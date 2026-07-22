@@ -145,7 +145,7 @@ func show_puzzle():
 	can_move = false
 
 func handle_final_room(new_room_index: int) -> void:
-	music.stream = AudioStreamOggVorbis.load_from_file("res://assets/sounds/Man_music.ogg")
+	music.stream = load("uid://bqcnvvlpw35a0")
 	music.play()
 	menu.show_text("")
 	rooms[current_room_index].hide()
@@ -176,4 +176,5 @@ func _on_puzzle_menu_puzzle_menu_closed() -> void:
 	can_move = true
 	
 func door_pressed() -> void:
+	OS.shell_open("https://lyhottag13.github.io/shop")
 	get_tree().quit()
