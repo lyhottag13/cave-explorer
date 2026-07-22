@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://q01iw865meqr"]
+
+[ext_resource type="Script" uid="uid://d1bffjnqkkvqm" path="res://scenes/map.gd" id="1_paxxb"]
+[ext_resource type="FontFile" uid="uid://5xldf5ogck01" path="res://assets/fonts/DTM-Mono.otf" id="2_gldc4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrmi8"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xfga"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_paxxb"]
+bg_color = Color(0.85625, 0.8398608, 0.2006836, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cso3"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="Map" type="Control" unique_id=220255879]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_paxxb")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1831940860]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=492172116]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hrmi8")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=2135701200]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=63146714]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 4
+
+[node name="Panel10" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=209552431]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel11" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=848733200]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=46237649]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="Panel12" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=1039422235]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel2" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=1334074511]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="Panel3" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=999776913]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="Panel4" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=1072004119]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="Panel5" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=452683812]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="Panel13" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=931096907]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel14" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=526988954]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel6" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=1997604048]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="Panel15" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=298114500]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel16" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=2011691701]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel17" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=1643288379]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel7" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=281120035]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="Panel8" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=1888377317]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="Panel18" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=634181862]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel19" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=1457761270]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel9" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=767684312]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="Panel20" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=1489782442]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel22" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=187070302]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel23" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=1248555148]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xfga")
+
+[node name="Panel21" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer" unique_id=209297820]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_paxxb")
+
+[node name="CloseButton" type="Button" parent="." unique_id=1653712189]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_top = 27.0
+offset_right = -17.0
+offset_bottom = 47.666664
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_gldc4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cso3")
+text = "X"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

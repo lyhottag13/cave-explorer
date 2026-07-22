@@ -14,7 +14,7 @@ var text: String
 @onready var locked_door: AnimatedSprite2D = $LockedDoor
 @onready var dynamite: AnimatedSprite2D = $Dynamite
 
-func setup(p_connections: Dictionary, p_properties: Array) -> void:
+func setup(p_connections: Dictionary, p_properties: Array, p_text: String) -> void:
 	connections = p_connections
 	left_sprite.visible = p_connections.has("left")
 	middle_sprite.visible = p_connections.has("forward")
@@ -24,6 +24,7 @@ func setup(p_connections: Dictionary, p_properties: Array) -> void:
 	debris.visible = p_properties.has("debris")
 	locked_door.visible = p_properties.has("locked_door")
 	dynamite.visible = p_properties.has("dynamite")
+	text = p_text
 
 func play_creepy() -> void:
 	background.animation = "creepy"

@@ -144,8 +144,7 @@ position = Vector2(237, 80.5)
 texture = ExtResource("5_klq6b")
 
 [node name="Debris" type="Sprite2D" parent="." unique_id=1364337891]
-visible = false
-position = Vector2(178, 71)
+position = Vector2(178, 70)
 texture = ExtResource("7_klq6b")
 
 [node name="LockedDoor" type="AnimatedSprite2D" parent="." unique_id=794848840]

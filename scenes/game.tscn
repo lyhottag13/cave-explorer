@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://creptov84hwoc" path="res://assets/sounds/exploration_music.mp3" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://c5bkwwy3hxu0y" path="res://scenes/menu.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://ojp7t37w8ug4" path="res://scenes/puzzle_menu.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://q01iw865meqr" path="res://scenes/map.tscn" id="7_u5sy4"]
 
 [node name="Game" type="Node2D" unique_id=2136221372]
 script = ExtResource("1_lbhrr")
@@ -114,7 +115,13 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
+[node name="Map" parent="CanvasLayer/UI" unique_id=220255879 instance=ExtResource("7_u5sy4")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
 [connection signal="act" from="CanvasLayer/UI/Menu" to="." method="_on_menu_act"]
+[connection signal="show_map" from="CanvasLayer/UI/Menu" to="." method="_on_menu_show_map"]
 [connection signal="pressed" from="CanvasLayer/UI/Buttons/Forward" to="." method="_on_forward_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Buttons/Right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Buttons/Left" to="." method="_on_left_pressed"]

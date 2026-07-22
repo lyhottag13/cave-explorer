@@ -80,16 +80,17 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.95000005, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 7
-theme_override_constants/shadow_outline_size = 7
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 3
 theme_override_fonts/font = ExtResource("2_7vrkn")
 theme_override_font_sizes/font_size = 38
 text = "CAVE EXPLORER"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2006080750]
 stream = ExtResource("4_jix8l")
+volume_db = 24.0
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
