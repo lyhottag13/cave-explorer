@@ -1,12 +1,114 @@
 [gd_scene format=3 uid="uid://bfbwuct8uj36y"]
 
 [ext_resource type="Script" uid="uid://cqk7qhjiip8dt" path="res://slot_1_button.gd" id="1_g5w7c"]
+[ext_resource type="Texture2D" uid="uid://ctvbugc45c7f5" path="res://assets/sprites/Slot Puzzle REAL SLOTS.png" id="2_v7ysy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llq04"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.9312501, 1, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3vjh"]
+atlas = ExtResource("2_v7ysy")
+region = Rect2(0, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cex4"]
+atlas = ExtResource("2_v7ysy")
+region = Rect2(30, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tprcn"]
+atlas = ExtResource("2_v7ysy")
+region = Rect2(60, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc7ok"]
+atlas = ExtResource("2_v7ysy")
+region = Rect2(90, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnfyj"]
+atlas = ExtResource("2_v7ysy")
+region = Rect2(120, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lqyp"]
+atlas = ExtResource("2_v7ysy")
+region = Rect2(150, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iusl5"]
+atlas = ExtResource("2_v7ysy")
+region = Rect2(180, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkkvl"]
+atlas = ExtResource("2_v7ysy")
+region = Rect2(210, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivar1"]
+atlas = ExtResource("2_v7ysy")
+region = Rect2(240, 0, 30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jknqx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3vjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cex4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tprcn")
+}],
+"loop": true,
+"name": &"slot1",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc7ok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnfyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lqyp")
+}],
+"loop": true,
+"name": &"slot2",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iusl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkkvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivar1")
+}],
+"loop": true,
+"name": &"slot3",
+"speed": 0.0
+}]
 
 [node name="SlotButton" type="Button" unique_id=1980917383]
-text = "A"
+custom_minimum_size = Vector2(30, 30)
+offset_right = 30.0
+offset_bottom = 30.0
+flat = true
 script = ExtResource("1_g5w7c")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=644728927]
+[node name="Panel" type="Panel" parent="." unique_id=1050413421]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 30.0
+offset_bottom = 30.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_llq04")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=240336956]
+position = Vector2(15, 15)
+sprite_frames = SubResource("SpriteFrames_jknqx")
+animation = &"slot1"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

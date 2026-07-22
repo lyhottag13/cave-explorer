@@ -1,34 +1,19 @@
 extends Control
 
-signal combo_checked(correct: bool)
+signal combo_checked(combo: Array[int])
 
-@onready var slot_1: Slot = %Slot1
-@onready var slot_2: Slot = %Slot2
-@onready var slot_3: Slot = %Slot3
-
-const TEST_SLOTS := ["A", "B", "C"]
+@onready var slot_1: Slot = %SlotButton1
+@onready var slot_2: Slot = %SlotButton2
+@onready var slot_3: Slot = %SlotButton3
 
 func _ready() -> void:
-	slot_1.setup(TEST_SLOTS)
-	slot_2.setup(TEST_SLOTS)
-	slot_3.setup(TEST_SLOTS)
-
-func _on_slot_pressed() -> void:
-	slot_1.increment()
-
-func _on_slot_2_pressed() -> void:
-	slot_2.increment()
-
-func _on_slot_3_pressed() -> void:
-	slot_3.increment()
+	slot_1.setup(1)
+	slot_2.setup(2)
+	slot_3.setup(3)
 
 func _on_check_button_pressed() -> void:
-	var correct_combination = slot_1.get_slot() == 0 && slot_2.get_slot() == 1 && slot_3.get_slot() == 2
-	if correct_combination:
-		combo_checked.emit(true)
-		queue_free()
-	else:
-		combo_checked.emit(false)
+	var combination: Array[int] = [slot_1.get_slot(), slot_2.get_slot(), slot_3.get_slot()]
+	combo_checked.emit(combination)
 
 func _on_close_button_pressed() -> void:
 	hide()

@@ -1,10 +1,10 @@
 class_name LevelInfo extends RefCounted
 
 var connections: Dictionary[String, int]
-var properties: Array[String]
+var properties: Dictionary
 var text: String
 
-func _init(p_connections: Dictionary[String, int], p_properties: Array[String], p_text: String = "Whole lotta nothing..."):
+func _init(p_connections: Dictionary[String, int], p_properties: Dictionary = {}, p_text: String = "Whole lotta nothing..."):
 	connections = p_connections
 	properties = p_properties
 	text = p_text

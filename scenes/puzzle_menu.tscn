@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ojp7t37w8ug4"]
 
 [ext_resource type="Script" uid="uid://ds6ta7or44odt" path="res://puzzle_menu.gd" id="1_b0js6"]
-[ext_resource type="Script" uid="uid://cqk7qhjiip8dt" path="res://slot_1_button.gd" id="2_mqay8"]
+[ext_resource type="PackedScene" uid="uid://bfbwuct8uj36y" path="res://scenes/slot_button.tscn" id="2_mqay8"]
 [ext_resource type="FontFile" uid="uid://5xldf5ogck01" path="res://assets/fonts/DTM-Mono.otf" id="3_mqay8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2moc4"]
@@ -50,23 +50,17 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer" unique_id=1368237246]
 layout_mode = 2
 
-[node name="Slot1" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1425848470]
+[node name="SlotButton1" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1980917383 instance=ExtResource("2_mqay8")]
 unique_name_in_owner = true
 layout_mode = 2
-script = ExtResource("2_mqay8")
-metadata/_custom_type_script = "uid://cqk7qhjiip8dt"
 
-[node name="Slot2" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=926712555]
+[node name="SlotButton2" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1845360249 instance=ExtResource("2_mqay8")]
 unique_name_in_owner = true
 layout_mode = 2
-script = ExtResource("2_mqay8")
-metadata/_custom_type_script = "uid://cqk7qhjiip8dt"
 
-[node name="Slot3" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1305911911]
+[node name="SlotButton3" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=953761383 instance=ExtResource("2_mqay8")]
 unique_name_in_owner = true
 layout_mode = 2
-script = ExtResource("2_mqay8")
-metadata/_custom_type_script = "uid://cqk7qhjiip8dt"
 
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/VBoxContainer" unique_id=1760473098]
 layout_mode = 2
@@ -95,9 +89,6 @@ theme_override_fonts/font = ExtResource("3_mqay8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_b0js6")
 text = "X"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/Slot1" to="." method="_on_slot_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/Slot2" to="." method="_on_slot_2_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/Slot3" to="." method="_on_slot_3_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/CenterContainer2/CheckButton" to="MarginContainer/VBoxContainer/CenterContainer2/CheckButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/VBoxContainer/CenterContainer2/CheckButton" to="MarginContainer/VBoxContainer/CenterContainer2/CheckButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer2/CheckButton" to="." method="_on_check_button_pressed"]

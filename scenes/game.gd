@@ -5,31 +5,33 @@ const LEVEL = preload("uid://jmcyftqrnl7m")
 
 var inventory: Array[String] = []
 
+var correct_combination: Array[int] = [randi_range(0, 2), randi_range(0, 2), randi_range(0, 2)]
+
 var room_props: Array[LevelInfo] = [
-	LevelInfo.new({forward = 1}, []),
-	LevelInfo.new({back = 0, forward = 2}, []),
+	LevelInfo.new({forward = 1}),
+	LevelInfo.new({back = 0, forward = 2}),
 	LevelInfo.new(
 		{back = 1, forward = 4, right = 3},
-		["debris"],
+		{debris = null},
 		"There's debris in the way!"
 	),
 	LevelInfo.new(
 		{left = 2},
-		["dynamite"],
+		{dynamite = null},
 		"There's a stick of dynamite on the floor."
 	),
-	LevelInfo.new({back = 2, forward = 5}, []),
+	LevelInfo.new({back = 2, forward = 5}),
 	LevelInfo.new(
 		{back = 4, left = 6, right = 8, forward = 9},
-		["locked_door"],
+		{locked_door = null},
 		"There's a locked door with a code."
 	),
-	LevelInfo.new({left = 7, right = 5}, ["slot1"]),
-	LevelInfo.new({right = 6}, ["slot2"]),
-	LevelInfo.new({left = 5}, ["slot3"]),
+	LevelInfo.new({left = 7, right = 5}, {slot = {slot_number = 1, correct_index = correct_combination[0]}}),
+	LevelInfo.new({right = 6}, {slot = {slot_number = 2, correct_index = correct_combination[1]}}),
+	LevelInfo.new({left = 5}, {slot = {slot_number = 3, correct_index = correct_combination[2]}}),
 	LevelInfo.new(
 		{},
-		["creepy"],
+		{creepy = null},
 		"HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME "
 	)
 ]
@@ -53,6 +55,7 @@ var is_puzzle_solved := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(correct_combination)
 	for i in len(room_props):
 		var new_room: Level = LEVEL.instantiate()
 		add_child(new_room)
@@ -137,13 +140,6 @@ func _on_menu_act() -> void:
 func show_puzzle():
 	puzzle_menu.show()
 
-func _on_puzzle_menu_combo_checked(correct: bool) -> void:
-	is_puzzle_solved = correct
-	if is_puzzle_solved:
-		rooms[current_room_index].text = "The door swings open!"
-		menu.show_text(rooms[current_room_index].text)
-		rooms[5].open_door()
-
 func handle_final_room(new_room_index: int) -> void:
 	music.stop()
 	menu.show_text("")
@@ -157,3 +153,13 @@ func handle_final_room(new_room_index: int) -> void:
 
 func _on_menu_show_map() -> void:
 	map.show()
+
+
+func _on_puzzle_menu_combo_checked(combo: Array[int]) -> void:
+	print(correct_combination, combo)
+	if combo == correct_combination:
+		puzzle_menu.hide()
+		is_puzzle_solved = true
+		rooms[current_room_index].text = "The door swings open!"
+		menu.show_text(rooms[current_room_index].text)
+		rooms[5].open_door()

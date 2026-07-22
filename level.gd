@@ -13,8 +13,9 @@ var text: String
 @onready var debris: Sprite2D = $Debris
 @onready var locked_door: AnimatedSprite2D = $LockedDoor
 @onready var dynamite: AnimatedSprite2D = $Dynamite
+@onready var slot_puzzle: AnimatedSprite2D = $SlotPuzzle
 
-func setup(p_connections: Dictionary, p_properties: Array, p_text: String) -> void:
+func setup(p_connections: Dictionary, p_properties: Dictionary, p_text: String) -> void:
 	connections = p_connections
 	left_sprite.visible = p_connections.has("left")
 	middle_sprite.visible = p_connections.has("forward")
@@ -24,6 +25,22 @@ func setup(p_connections: Dictionary, p_properties: Array, p_text: String) -> vo
 	debris.visible = p_properties.has("debris")
 	locked_door.visible = p_properties.has("locked_door")
 	dynamite.visible = p_properties.has("dynamite")
+	if p_properties.has("slot"):
+		match p_properties.get("slot").get("slot_number"):
+			1:
+				slot_puzzle.position = Vector2(127, 32)
+				slot_puzzle.animation = "slot1"
+			2:
+				slot_puzzle.position = Vector2(170, 35)
+				slot_puzzle.animation = "slot2"
+			3:
+				slot_puzzle.position = Vector2(230, 35)
+				slot_puzzle.animation = "slot3"
+		slot_puzzle.frame = p_properties.get("slot").get("correct_index")
+		slot_puzzle.show()
+	else:
+		slot_puzzle.hide()
+	
 	text = p_text
 
 func play_creepy() -> void:
@@ -42,5 +59,4 @@ func show_dynamite() -> void:
 	dynamite.show()
 	dynamite.animation = "lit"
 	await dynamite.animation_finished
-	print("Hey!")
 	dynamite.hide()
