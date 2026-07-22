@@ -9,8 +9,19 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
 bg_color = Color(0.771875, 0.21708985, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ytvr"]
+bg_color = Color(0.55, 0.15355329, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3eks"]
+bg_color = Color(0.8875, 0.5136631, 0.36886716, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhnvy"]
 bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [node name="Menu" type="Control" unique_id=744743626]
 z_index = -100
@@ -24,42 +35,56 @@ script = ExtResource("1_con2f")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1802399977]
 custom_minimum_size = Vector2(200, 0)
-layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 318.0
-offset_bottom = 178.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1719412101]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="GameHole" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=156984709]
 custom_minimum_size = Vector2(270, 0)
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=635447682]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=1109643900]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_con2f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer" unique_id=1189166305]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelContainer" unique_id=763237566]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
 
-[node name="Act" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1250555564]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=1189166305]
+layout_mode = 2
+
+[node name="Act" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1250555564]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4ytvr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g3eks")
 text = "Act"
 
-[node name="Map" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1374586192]
+[node name="Map" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1374586192]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4ytvr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g3eks")
 text = "Map"
 
 [node name="Panel" type="Panel" parent="VBoxContainer" unique_id=419927720]
@@ -86,5 +111,5 @@ theme_override_fonts/font = ExtResource("1_yqeox")
 text = "* Something crazy is happening! Better look out."
 autowrap_mode = 2
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Act" to="." method="_on_act_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/Map" to="." method="_on_map_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Act" to="." method="_on_act_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Map" to="." method="_on_map_pressed"]
