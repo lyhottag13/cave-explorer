@@ -45,7 +45,7 @@ var room_props: Array[LevelInfo] = [
 @onready var puzzle_menu: Control = %PuzzleMenu
 @onready var map: Control = %Map
 @onready var music: AudioStreamPlayer = %Music
-@onready var player: Node2D = %Player
+@onready var player: Player = %Player
 
 var rooms: Array[Level] = []
 
@@ -124,21 +124,24 @@ func _on_back_pressed() -> void:
 func _on_menu_act() -> void:
 	if current_room_index == 3 && not inventory.has("dynamite"):
 		rooms[3].hide_dynamite()
+		can_move = false
+		await player.play_thumbs_up()
+		can_move = true
 		inventory.append("dynamite")
 		print("Dynamite Collected!")
 		rooms[current_room_index].text = "You got the dynamite!"
 		rooms[2].text = "This looks bombable..."
 		menu.show_text(rooms[current_room_index].text)
 	elif current_room_index == 2 && inventory.has("dynamite") && not is_debris_cleared:
-		can_move = false
 		inventory.erase("dynamite")
+		can_move = false
 		await rooms[2].show_dynamite()
+		can_move = true
 		is_debris_cleared = true
 		rooms[2].hide_debris()
 		print("Explosion!")
 		rooms[current_room_index].text = "The debris is cleared!"
 		menu.show_text(rooms[current_room_index].text)
-		can_move = true
 	elif current_room_index == 5 && not is_puzzle_solved:
 		show_puzzle()
 
@@ -147,6 +150,7 @@ func show_puzzle():
 	can_move = false
 
 var new_music = load("uid://bqcnvvlpw35a0")
+
 func handle_final_room(new_room_index: int) -> void:
 	music.stream = new_music
 	music.play()
@@ -170,7 +174,6 @@ func _on_puzzle_menu_combo_checked(combo: Array[int]) -> void:
 		rooms[current_room_index].text = "The door swings open!"
 		menu.show_text(rooms[current_room_index].text)
 		rooms[5].open_door()
-
 
 func _on_map_map_closed() -> void:
 	can_move = true
