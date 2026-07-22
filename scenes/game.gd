@@ -52,6 +52,7 @@ var current_room_index := 0 # Tracks the current room.
 
 var is_debris_cleared := false
 var is_puzzle_solved := false
+var can_move := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -66,14 +67,15 @@ func _ready() -> void:
 	draw_buttons(current_room_index)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("move_down"):
-		back.pressed.emit()
-	elif Input.is_action_just_pressed("move_left"):
-		left.pressed.emit()
-	elif Input.is_action_just_pressed("move_up"):
-		forward.pressed.emit()
-	elif Input.is_action_just_pressed("move_right"):
-		right.pressed.emit()
+	if can_move:
+		if Input.is_action_just_pressed("move_down"):
+			back.pressed.emit()
+		elif Input.is_action_just_pressed("move_left"):
+			left.pressed.emit()
+		elif Input.is_action_just_pressed("move_up"):
+			forward.pressed.emit()
+		elif Input.is_action_just_pressed("move_right"):
+			right.pressed.emit()
 
 func draw_buttons(room_index: int):
 	var room: Dictionary[String, int] = room_props[room_index].connections
@@ -139,6 +141,7 @@ func _on_menu_act() -> void:
 
 func show_puzzle():
 	puzzle_menu.show()
+	can_move = false
 
 func handle_final_room(new_room_index: int) -> void:
 	music.stop()
@@ -153,13 +156,21 @@ func handle_final_room(new_room_index: int) -> void:
 
 func _on_menu_show_map() -> void:
 	map.show()
-
+	can_move = false
 
 func _on_puzzle_menu_combo_checked(combo: Array[int]) -> void:
 	print(correct_combination, combo)
 	if combo == correct_combination:
 		puzzle_menu.hide()
+		can_move = true
 		is_puzzle_solved = true
 		rooms[current_room_index].text = "The door swings open!"
 		menu.show_text(rooms[current_room_index].text)
 		rooms[5].open_door()
+
+
+func _on_map_map_closed() -> void:
+	can_move = true
+	
+func _on_puzzle_menu_puzzle_menu_closed() -> void:
+	can_move = true

@@ -1,6 +1,7 @@
 extends Control
 
 signal combo_checked(combo: Array[int])
+signal puzzle_menu_closed
 
 @onready var slot_1: Slot = %SlotButton1
 @onready var slot_2: Slot = %SlotButton2
@@ -16,4 +17,5 @@ func _on_check_button_pressed() -> void:
 	combo_checked.emit(combination)
 
 func _on_close_button_pressed() -> void:
+	puzzle_menu_closed.emit()
 	hide()

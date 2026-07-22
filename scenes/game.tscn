@@ -127,3 +127,5 @@ layout_mode = 1
 [connection signal="pressed" from="CanvasLayer/UI/Buttons/Left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Buttons/Back" to="." method="_on_back_pressed"]
 [connection signal="combo_checked" from="CanvasLayer/UI/PuzzleMenu" to="." method="_on_puzzle_menu_combo_checked"]
+[connection signal="puzzle_menu_closed" from="CanvasLayer/UI/PuzzleMenu" to="." method="_on_puzzle_menu_puzzle_menu_closed"]
+[connection signal="map_closed" from="CanvasLayer/UI/Map" to="." method="_on_map_map_closed"]
