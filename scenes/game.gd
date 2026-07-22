@@ -56,7 +56,6 @@ var can_move := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(correct_combination)
 	for i in len(room_props):
 		var new_room: Level = LEVEL.instantiate()
 		add_child(new_room)
@@ -69,15 +68,14 @@ func _ready() -> void:
 	menu.show_text("Time to explore...")
 
 func _process(_delta: float) -> void:
-	if can_move:
-		if Input.is_action_just_pressed("move_down"):
-			back.pressed.emit()
-		elif Input.is_action_just_pressed("move_left"):
-			left.pressed.emit()
-		elif Input.is_action_just_pressed("move_up"):
-			forward.pressed.emit()
-		elif Input.is_action_just_pressed("move_right"):
-			right.pressed.emit()
+	if Input.is_action_just_pressed("move_down"):
+		back.pressed.emit()
+	elif Input.is_action_just_pressed("move_left"):
+		left.pressed.emit()
+	elif Input.is_action_just_pressed("move_up"):
+		forward.pressed.emit()
+	elif Input.is_action_just_pressed("move_right"):
+		right.pressed.emit()
 
 func draw_buttons(room_index: int):
 	var room: Dictionary[String, int] = room_props[room_index].connections
@@ -87,22 +85,23 @@ func draw_buttons(room_index: int):
 	back.visible = room.has("back")
 
 func switch_room(new_room_index: int) -> void:
-	if new_room_index == 4 && not is_debris_cleared:
-		menu.show_text("The debris blocks you.")
-		return
-	elif new_room_index == 9 && not is_puzzle_solved:
-		menu.show_text("The locked door blocks you.")
-		return
-	elif new_room_index == 9 && is_puzzle_solved:
-		handle_final_room(new_room_index)
-	elif new_room_index == -1:
-		return
-	else:
-		rooms[current_room_index].hide()
-		current_room_index = new_room_index
-		rooms[current_room_index].show()
-		draw_buttons(current_room_index)
-		menu.show_text(rooms[current_room_index].text)
+	if can_move:
+		if new_room_index == 4 && not is_debris_cleared:
+			menu.show_text("The debris blocks you.")
+			return
+		elif new_room_index == 9 && not is_puzzle_solved:
+			menu.show_text("The locked door blocks you.")
+			return
+		elif new_room_index == 9 && is_puzzle_solved:
+			handle_final_room(new_room_index)
+		elif new_room_index == -1:
+			return
+		else:
+			rooms[current_room_index].hide()
+			current_room_index = new_room_index
+			rooms[current_room_index].show()
+			draw_buttons(current_room_index)
+			menu.show_text(rooms[current_room_index].text)
 
 # Below functions are VERY FRAGILE because if there's a button drawn for a direction that does not exist, the code will BREAK.
 func _on_forward_pressed() -> void:

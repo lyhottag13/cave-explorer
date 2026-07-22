@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://q01iw865meqr"]
+[gd_scene format=3 uid="uid://w1ysjc31uvda"]
 
 [ext_resource type="Script" uid="uid://d1bffjnqkkvqm" path="res://scenes/map.gd" id="1_paxxb"]
 [ext_resource type="FontFile" uid="uid://5xldf5ogck01" path="res://assets/fonts/DTM-Mono.otf" id="2_gldc4"]
+[ext_resource type="Texture2D" uid="uid://cy5iruellp00f" path="res://assets/sprites/Sticky Note.png" id="3_gldc4"]
+[ext_resource type="Texture2D" uid="uid://bjefsvypntyc8" path="res://assets/sprites/CODETODOOR.png" id="4_0cso3"]
+[ext_resource type="Texture2D" uid="uid://cw4e1west6h2f" path="res://assets/sprites/Ali'sMark.png" id="5_2klcf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrmi8"]
 bg_color = Color(0, 0, 0, 1)
@@ -174,5 +177,17 @@ grow_horizontal = 0
 theme_override_fonts/font = ExtResource("2_gldc4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0cso3")
 text = "X"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=642630107]
+position = Vector2(43, 149)
+texture = ExtResource("3_gldc4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1431105917]
+position = Vector2(283, 168)
+texture = ExtResource("4_0cso3")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1118798479]
+position = Vector2(70, 61)
+texture = ExtResource("5_2klcf")
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
