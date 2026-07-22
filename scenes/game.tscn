@@ -26,8 +26,6 @@ parameters/looping = true
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=1211372423]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1233817589]
-
 [node name="UI" type="Control" parent="." unique_id=730868816]
 layout_mode = 3
 anchors_preset = 15
