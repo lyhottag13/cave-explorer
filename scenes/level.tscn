@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dsbgqr1ysr6ys" path="res://assets/sprites/Dynamite Lit.png" id="10_t1rx8"]
 [ext_resource type="Texture2D" uid="uid://du845h4itxfpd" path="res://assets/sprites/Dynamite Unlit.png" id="11_8iemx"]
 [ext_resource type="Texture2D" uid="uid://dheum8eg63nv4" path="res://assets/sprites/Slot Puzzle Scratches.png" id="12_8iemx"]
+[ext_resource type="Texture2D" uid="uid://c4no3xqxgax1x" path="res://assets/sprites/The Door Closed.png" id="14_wc255"]
+[ext_resource type="Texture2D" uid="uid://ci2ex046vyuqu" path="res://assets/sprites/The Door Ajar.png" id="15_arp2o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mx8sn"]
 atlas = ExtResource("2_w8frs")
@@ -226,6 +228,7 @@ position = Vector2(237, 80.5)
 texture = ExtResource("5_klq6b")
 
 [node name="Debris" type="Sprite2D" parent="." unique_id=1364337891]
+visible = false
 position = Vector2(178, 70)
 texture = ExtResource("7_klq6b")
 
@@ -237,12 +240,25 @@ animation = &"locked"
 autoplay = "locked"
 
 [node name="Dynamite" type="AnimatedSprite2D" parent="." unique_id=132682526]
+visible = false
 position = Vector2(181, 85)
 sprite_frames = SubResource("SpriteFrames_arp2o")
 animation = &"unlit"
 autoplay = "unlit"
 
 [node name="SlotPuzzle" type="AnimatedSprite2D" parent="." unique_id=2065842084]
+visible = false
 position = Vector2(230, 35)
 sprite_frames = SubResource("SpriteFrames_3ies3")
 animation = &"slot1"
+
+[node name="TheDoor" type="TextureButton" parent="." unique_id=1195397559]
+z_index = 100
+offset_left = 164.0
+offset_top = 60.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture_normal = ExtResource("14_wc255")
+texture_hover = ExtResource("15_arp2o")
+
+[connection signal="pressed" from="TheDoor" to="." method="_on_the_door_pressed"]

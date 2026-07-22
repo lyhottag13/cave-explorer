@@ -31,8 +31,8 @@ var room_props: Array[LevelInfo] = [
 	LevelInfo.new({left = 5}, {slot = {slot_number = 3, correct_index = correct_combination[2]}}),
 	LevelInfo.new(
 		{},
-		{creepy = null},
-		"HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME HELP ME "
+		{the_door = null},
+		"Well, there is a door here."
 	)
 ]
 
@@ -65,6 +65,7 @@ func _ready() -> void:
 		rooms.append(new_room)
 	rooms[current_room_index].show()
 	draw_buttons(current_room_index)
+	rooms[9].the_door_pressed.connect(door_pressed)
 
 func _process(_delta: float) -> void:
 	if can_move:
@@ -101,7 +102,6 @@ func switch_room(new_room_index: int) -> void:
 		rooms[current_room_index].show()
 		draw_buttons(current_room_index)
 		menu.show_text(rooms[current_room_index].text)
-
 
 # Below functions are VERY FRAGILE because if there's a button drawn for a direction that does not exist, the code will BREAK.
 func _on_forward_pressed() -> void:
@@ -151,8 +151,6 @@ func handle_final_room(new_room_index: int) -> void:
 	rooms[new_room_index].show()
 	draw_buttons(new_room_index)
 	menu.show_text(rooms[new_room_index].text)
-	await Utils.sleep(1)
-	get_tree().quit()
 
 func _on_menu_show_map() -> void:
 	map.show()
@@ -174,3 +172,6 @@ func _on_map_map_closed() -> void:
 	
 func _on_puzzle_menu_puzzle_menu_closed() -> void:
 	can_move = true
+	
+func door_pressed() -> void:
+	get_tree().quit()

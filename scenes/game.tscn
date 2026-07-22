@@ -11,25 +11,6 @@
 [node name="Game" type="Node2D" unique_id=2136221372]
 script = ExtResource("1_lbhrr")
 
-[node name="Control" type="Control" parent="." unique_id=1265691737]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 320.0
-offset_bottom = 180.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BackgroundReal" type="ColorRect" parent="Control" unique_id=2046425965]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="Background" parent="." unique_id=528456743 instance=ExtResource("1_yqjtg")]
 position = Vector2(135, 50)
 
@@ -44,23 +25,25 @@ autoplay = true
 parameters/looping = true
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=1211372423]
-z_index = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1233817589]
 
-[node name="UI" type="Control" parent="CanvasLayer" unique_id=730868816]
+[node name="UI" type="Control" parent="." unique_id=730868816]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menu" parent="CanvasLayer/UI" unique_id=744743626 instance=ExtResource("5_iywne")]
+[node name="Menu" parent="UI" unique_id=744743626 instance=ExtResource("5_iywne")]
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="Buttons" type="Control" parent="CanvasLayer/UI" unique_id=727562961]
+[node name="Buttons" type="Control" parent="UI" unique_id=727562961]
+z_index = 1
 layout_mode = 1
 anchor_right = 0.84400004
 anchor_bottom = 0.55600005
@@ -70,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 
-[node name="Forward" type="Button" parent="CanvasLayer/UI/Buttons" unique_id=941350130]
+[node name="Forward" type="Button" parent="UI/Buttons" unique_id=941350130]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 167.0
@@ -80,7 +63,7 @@ offset_bottom = 50.0
 theme_override_font_sizes/font_size = 4
 text = "Forward"
 
-[node name="Right" type="Button" parent="CanvasLayer/UI/Buttons" unique_id=1505549595]
+[node name="Right" type="Button" parent="UI/Buttons" unique_id=1505549595]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 229.0
@@ -90,7 +73,7 @@ offset_bottom = 58.0
 theme_override_font_sizes/font_size = 4
 text = "Right"
 
-[node name="Left" type="Button" parent="CanvasLayer/UI/Buttons" unique_id=1367166408]
+[node name="Left" type="Button" parent="UI/Buttons" unique_id=1367166408]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 114.0
@@ -100,7 +83,7 @@ offset_bottom = 56.0
 theme_override_font_sizes/font_size = 4
 text = "Left"
 
-[node name="Back" type="Button" parent="CanvasLayer/UI/Buttons" unique_id=1560689510]
+[node name="Back" type="Button" parent="UI/Buttons" unique_id=1560689510]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 51.0
@@ -110,22 +93,24 @@ offset_bottom = 33.0
 theme_override_font_sizes/font_size = 4
 text = "Back"
 
-[node name="PuzzleMenu" parent="CanvasLayer/UI" unique_id=1020153591 instance=ExtResource("6_p57ef")]
+[node name="PuzzleMenu" parent="UI" unique_id=1020153591 instance=ExtResource("6_p57ef")]
 unique_name_in_owner = true
 visible = false
+z_index = 2
 layout_mode = 1
 
-[node name="Map" parent="CanvasLayer/UI" unique_id=220255879 instance=ExtResource("7_u5sy4")]
+[node name="Map" parent="UI" unique_id=220255879 instance=ExtResource("7_u5sy4")]
 unique_name_in_owner = true
 visible = false
+z_index = 2
 layout_mode = 1
 
-[connection signal="act" from="CanvasLayer/UI/Menu" to="." method="_on_menu_act"]
-[connection signal="show_map" from="CanvasLayer/UI/Menu" to="." method="_on_menu_show_map"]
-[connection signal="pressed" from="CanvasLayer/UI/Buttons/Forward" to="." method="_on_forward_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/Buttons/Right" to="." method="_on_right_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/Buttons/Left" to="." method="_on_left_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/Buttons/Back" to="." method="_on_back_pressed"]
-[connection signal="combo_checked" from="CanvasLayer/UI/PuzzleMenu" to="." method="_on_puzzle_menu_combo_checked"]
-[connection signal="puzzle_menu_closed" from="CanvasLayer/UI/PuzzleMenu" to="." method="_on_puzzle_menu_puzzle_menu_closed"]
-[connection signal="map_closed" from="CanvasLayer/UI/Map" to="." method="_on_map_map_closed"]
+[connection signal="act" from="UI/Menu" to="." method="_on_menu_act"]
+[connection signal="show_map" from="UI/Menu" to="." method="_on_menu_show_map"]
+[connection signal="pressed" from="UI/Buttons/Forward" to="." method="_on_forward_pressed"]
+[connection signal="pressed" from="UI/Buttons/Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="UI/Buttons/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="UI/Buttons/Back" to="." method="_on_back_pressed"]
+[connection signal="combo_checked" from="UI/PuzzleMenu" to="." method="_on_puzzle_menu_combo_checked"]
+[connection signal="puzzle_menu_closed" from="UI/PuzzleMenu" to="." method="_on_puzzle_menu_puzzle_menu_closed"]
+[connection signal="map_closed" from="UI/Map" to="." method="_on_map_map_closed"]

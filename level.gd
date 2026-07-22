@@ -1,5 +1,7 @@
 class_name Level extends Node2D
 
+signal the_door_pressed
+
 # Stores the connections for a certain room in a {direction: room number} format.
 var connections: Dictionary = {}
 var text: String
@@ -14,6 +16,7 @@ var text: String
 @onready var locked_door: AnimatedSprite2D = $LockedDoor
 @onready var dynamite: AnimatedSprite2D = $Dynamite
 @onready var slot_puzzle: AnimatedSprite2D = $SlotPuzzle
+@onready var the_door: TextureButton = $TheDoor
 
 func setup(p_connections: Dictionary, p_properties: Dictionary, p_text: String) -> void:
 	connections = p_connections
@@ -40,7 +43,7 @@ func setup(p_connections: Dictionary, p_properties: Dictionary, p_text: String) 
 		slot_puzzle.show()
 	else:
 		slot_puzzle.hide()
-	
+	the_door.visible = p_properties.has("the_door")
 	text = p_text
 
 func play_creepy() -> void:
@@ -60,3 +63,6 @@ func show_dynamite() -> void:
 	dynamite.animation = "lit"
 	await dynamite.animation_finished
 	dynamite.hide()
+
+func _on_the_door_pressed() -> void:
+	the_door_pressed.emit()
