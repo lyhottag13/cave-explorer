@@ -24,9 +24,9 @@ var room_props: Array[LevelInfo] = [
 		["locked_door"],
 		"There's a locked door with a code."
 	),
-	LevelInfo.new({left = 7, right = 5}, []),
-	LevelInfo.new({right = 6}, []),
-	LevelInfo.new({left = 5}, []),
+	LevelInfo.new({left = 7, right = 5}, ["slot1"]),
+	LevelInfo.new({right = 6}, ["slot2"]),
+	LevelInfo.new({left = 5}, ["slot3"]),
 	LevelInfo.new(
 		{},
 		["creepy"],
@@ -79,7 +79,7 @@ func draw_buttons(room_index: int):
 	right.visible = room.has("right")
 	back.visible = room.has("back")
 
-func switch_room(new_room_index: int):
+func switch_room(new_room_index: int) -> void:
 	if new_room_index == 4 && not is_debris_cleared:
 		menu.show_text("The debris blocks you.")
 		return
@@ -88,6 +88,8 @@ func switch_room(new_room_index: int):
 		return
 	elif new_room_index == 9 && is_puzzle_solved:
 		handle_final_room(new_room_index)
+	elif new_room_index == -1:
+		return
 	else:
 		rooms[current_room_index].hide()
 		current_room_index = new_room_index
@@ -122,8 +124,9 @@ func _on_menu_act() -> void:
 		rooms[2].text = "This looks bombable..."
 		menu.show_text(rooms[current_room_index].text)
 	elif current_room_index == 2 && inventory.has("dynamite") && not is_debris_cleared:
-		is_debris_cleared = true
+		inventory.erase("dynamite")
 		await rooms[2].show_dynamite()
+		is_debris_cleared = true
 		rooms[2].hide_debris()
 		print("Explosion!")
 		rooms[current_room_index].text = "The debris is cleared!"

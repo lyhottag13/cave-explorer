@@ -20,4 +20,4 @@ func get_direction(direction: String) -> int:
 		return connections.get(direction)
 	else:
 		print("Oops! Direction doesn't exist.")
-		return 0
+		return -1
