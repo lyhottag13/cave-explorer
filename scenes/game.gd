@@ -45,6 +45,7 @@ var room_props: Array[LevelInfo] = [
 @onready var puzzle_menu: Control = %PuzzleMenu
 @onready var map: Control = %Map
 @onready var music: AudioStreamPlayer = %Music
+@onready var player: Node2D = %Player
 
 var rooms: Array[Level] = []
 
@@ -179,4 +180,8 @@ func _on_puzzle_menu_puzzle_menu_closed() -> void:
 	
 func door_pressed() -> void:
 	OS.shell_open("https://lyhottag13.github.io/shop")
-	get_tree().quit()
+	if OS.get_name() == "Web":
+		await get_window().focus_exited
+		player.hide()
+	else:
+		get_tree().quit()
