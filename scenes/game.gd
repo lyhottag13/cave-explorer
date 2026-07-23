@@ -205,6 +205,7 @@ func handle_explosion() -> void:
 	animation_player.play("explosion_start")
 	await animation_player.animation_finished
 	start_shake()
+	Sfx.play_sfx("explosion")
 	is_debris_cleared = true
 	rooms[2].hide_debris()
 	print("Explosion!")
@@ -248,3 +249,9 @@ func door_pressed() -> void:
 		player.hide()
 	else:
 		get_tree().quit()
+
+func play_funk() -> void:
+	player.show_funk()
+	Sfx.play_sfx("funk")
+	await Utils.sleep(0.3)
+	player.hide_funk()

@@ -2,7 +2,36 @@
 
 [ext_resource type="Texture2D" uid="uid://cdk8lvkgen03b" path="res://assets/sprites/Miner Protagonist Real.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cvvjwsrpyxfq1" path="res://scripts/player.gd" id="1_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://bd23ux7msxvs3" path="res://assets/sprites/FUNK.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bjgd38xkj8vy6" path="res://assets/sprites/Ali (Miner)ThumbsUp.png" id="2_g2els"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+atlas = ExtResource("2_dqkch")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("2_dqkch")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oprun"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jej6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jej6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -99,6 +128,13 @@ animations = [{
 
 [node name="Player" type="Node2D" unique_id=38243948]
 script = ExtResource("1_qhqgy")
+
+[node name="Funk" type="AnimatedSprite2D" parent="." unique_id=667126312]
+visible = false
+position = Vector2(1, -8)
+sprite_frames = SubResource("SpriteFrames_oprun")
+frame = 3
+frame_progress = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=817690434]
 sprite_frames = SubResource("SpriteFrames_dqkch")

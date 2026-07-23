@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Utils="*uid://c6eur2t124n6y"
 Transition="*uid://c3sn0pog7uyti"
+Sfx="*uid://cwkogx3656nsp"
 
 [display]
 
