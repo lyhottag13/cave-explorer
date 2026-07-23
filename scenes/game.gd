@@ -36,16 +36,18 @@ var room_props: Array[LevelInfo] = [
 	)
 ]
 
-@onready var left: Button = %Left
-@onready var forward: Button = %Forward
-@onready var right: Button = %Right
-@onready var back: Button = %Back
+@onready var left: TextureButton = %Left
+@onready var forward: TextureButton = %Forward
+@onready var right: TextureButton = %Right
+@onready var back: TextureButton = %Back
 
 @onready var menu: Menu = %Menu
 @onready var puzzle_menu: Control = %PuzzleMenu
 @onready var map: Control = %Map
 @onready var music: AudioStreamPlayer = %Music
 @onready var player: Player = %Player
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var buttons: Control = %Buttons
 
 var rooms: Array[Level] = []
 
@@ -53,7 +55,9 @@ var current_room_index := 0 # Tracks the current room.
 
 var is_debris_cleared := false
 var is_puzzle_solved := false
-var can_move := true
+var can_move := false
+var can_act := false
+var can_open_map := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -67,6 +71,11 @@ func _ready() -> void:
 	draw_buttons(current_room_index)
 	rooms[9].the_door_pressed.connect(door_pressed)
 	menu.show_text("Time to explore...")
+	# Sleeps so that the player can't move during the fade in.
+	await Utils.sleep(1)
+	can_move = true
+	can_act = true
+	can_open_map = true
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("move_down"):
@@ -79,11 +88,15 @@ func _process(_delta: float) -> void:
 		right.pressed.emit()
 
 func draw_buttons(room_index: int):
+	buttons.show()
 	var room: Dictionary[String, int] = room_props[room_index].connections
 	forward.visible = room.has("forward")
 	left.visible = room.has("left")
 	right.visible = room.has("right")
 	back.visible = room.has("back")
+
+func hide_buttons() -> void:
+	buttons.hide()
 
 func switch_room(new_room_index: int) -> void:
 	if can_move:
@@ -98,9 +111,15 @@ func switch_room(new_room_index: int) -> void:
 		elif new_room_index == -1:
 			return
 		else:
-			rooms[current_room_index].hide()
+			hide_buttons()
+			can_act = false
+			can_move = false
+			can_open_map = false
+			await Transition.goto_level(rooms[current_room_index], rooms[new_room_index])
+			can_move = true
+			can_act = true
+			can_open_map = true
 			current_room_index = new_room_index
-			rooms[current_room_index].show()
 			draw_buttons(current_room_index)
 			menu.show_text(rooms[current_room_index].text)
 
@@ -122,28 +141,13 @@ func _on_back_pressed() -> void:
 	switch_room(new_room_index)
 
 func _on_menu_act() -> void:
-	if current_room_index == 3 && not inventory.has("dynamite"):
-		rooms[3].hide_dynamite()
-		can_move = false
-		await player.play_thumbs_up()
-		can_move = true
-		inventory.append("dynamite")
-		print("Dynamite Collected!")
-		rooms[current_room_index].text = "You got the dynamite!"
-		rooms[2].text = "This looks bombable..."
-		menu.show_text(rooms[current_room_index].text)
-	elif current_room_index == 2 && inventory.has("dynamite") && not is_debris_cleared:
-		inventory.erase("dynamite")
-		can_move = false
-		await rooms[2].show_dynamite()
-		can_move = true
-		is_debris_cleared = true
-		rooms[2].hide_debris()
-		print("Explosion!")
-		rooms[current_room_index].text = "The debris is cleared!"
-		menu.show_text(rooms[current_room_index].text)
-	elif current_room_index == 5 && not is_puzzle_solved:
-		show_puzzle()
+	if can_act:
+		if current_room_index == 3 && not inventory.has("dynamite"):
+			handle_dynamite()
+		elif current_room_index == 2 && inventory.has("dynamite") && not is_debris_cleared:
+			handle_explosion()
+		elif current_room_index == 5 && not is_puzzle_solved:
+			show_puzzle()
 
 func show_puzzle():
 	puzzle_menu.show()
@@ -161,22 +165,64 @@ func handle_final_room(new_room_index: int) -> void:
 	draw_buttons(new_room_index)
 	menu.show_text(rooms[new_room_index].text)
 
-func _on_menu_show_map() -> void:
-	map.show()
+func handle_dynamite() -> void:
+	can_act = false
+	can_open_map = false
 	can_move = false
+	inventory.append("dynamite")
+	print("Dynamite Collected!")
+	rooms[2].text = "This looks bombable..."
+	rooms[current_room_index].text = "You got the dynamite!"
+	menu.show_text(rooms[current_room_index].text)
+	rooms[3].hide_dynamite()
+	map.hide()
+	animation_player.play("thumbs_up")
+	await animation_player.animation_finished
+	can_move = true
+	can_act = true
+	can_open_map = true
+
+func handle_explosion() -> void:
+	can_act = false
+	can_open_map = false
+	can_move = false
+	map.hide()
+	inventory.erase("dynamite")
+	rooms[2].show_dynamite()
+	animation_player.play("explosion_start")
+	await animation_player.animation_finished
+	is_debris_cleared = true
+	rooms[2].hide_debris()
+	print("Explosion!")
+	animation_player.play("explosion_end")
+	await animation_player.animation_finished
+	rooms[current_room_index].text = "The debris is cleared!"
+	menu.show_text(rooms[current_room_index].text)
+	can_move = true
+	can_act = true
+	can_open_map = true
+
+func _on_menu_show_map() -> void:
+	if can_open_map:
+		map.show()
+		can_move = false
+		can_act = false
 
 func _on_puzzle_menu_combo_checked(combo: Array[int]) -> void:
 	print(correct_combination, combo)
 	if combo == correct_combination:
-		puzzle_menu.hide()
-		can_move = true
-		is_puzzle_solved = true
-		rooms[current_room_index].text = "The door swings open!"
-		menu.show_text(rooms[current_room_index].text)
 		rooms[5].open_door()
+		puzzle_menu.hide()
+		rooms[current_room_index].text = "The door swings open!"
+		is_puzzle_solved = true
+		menu.show_text(rooms[current_room_index].text)
+		animation_player.play("thumbs_up")
+		await animation_player.animation_finished
+		can_move = true
 
 func _on_map_map_closed() -> void:
 	can_move = true
+	can_act = true
 	
 func _on_puzzle_menu_puzzle_menu_closed() -> void:
 	can_move = true

@@ -6,3 +6,6 @@ func play_thumbs_up():
 	animated_sprite_2d.play("thumbs_up")
 	await animated_sprite_2d.animation_finished
 	animated_sprite_2d.play("idle")
+
+func play_dynamite_animation():
+	pass

@@ -90,7 +90,7 @@ text = "CAVE EXPLORER"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2006080750]
 stream = ExtResource("4_jix8l")
-volume_db = 24.0
+volume_db = 10.0
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]

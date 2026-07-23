@@ -5,8 +5,307 @@
 [ext_resource type="PackedScene" uid="uid://fc38wept4y60" path="res://scenes/background.tscn" id="1_yqjtg"]
 [ext_resource type="AudioStream" uid="uid://creptov84hwoc" path="res://assets/sounds/exploration_music.mp3" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://c5bkwwy3hxu0y" path="res://scenes/menu.tscn" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://cy7hfse3aay00" path="res://assets/sprites/Arrows.png" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://ojp7t37w8ug4" path="res://scenes/puzzle_menu.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://w1ysjc31uvda" path="res://scenes/map.tscn" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://dqhhprka3dqsw" path="res://assets/sprites/ArrowsYellow.png" id="7_vtaks"]
+[ext_resource type="Texture2D" uid="uid://ulwbrii3x3t5" path="res://assets/sprites/Realistic Explosion.png" id="8_gee14"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhx41"]
+atlas = ExtResource("6_0tnpc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgl2t"]
+atlas = ExtResource("7_vtaks")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnb83"]
+atlas = ExtResource("6_0tnpc")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qouja"]
+atlas = ExtResource("7_vtaks")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sww3w"]
+atlas = ExtResource("6_0tnpc")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wljb1"]
+atlas = ExtResource("7_vtaks")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suyxu"]
+atlas = ExtResource("6_0tnpc")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2yb1"]
+atlas = ExtResource("7_vtaks")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_gee14"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(56, 68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameSprites/Explosion:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vtaks"]
+resource_name = "explosion_end"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Vector2(280, 68), Vector2(280, 68), Vector2(56, 68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameSprites/Explosion:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameSprites/Explosion")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0tnpc"]
+resource_name = "explosion"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(0.3, 1, 0.5),
+"update": 0,
+"values": [Vector2(56, 68), Vector2(280, 68), Vector2(280, 68)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_u5sy4"]
+resource_name = "thumbs_up"
+length = 1.7
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_thumbs_up"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.7),
+"transitions": PackedFloat32Array(0.3, 0.5, 1),
+"update": 0,
+"values": [Vector2(56, 68), Vector2(120, 68), Vector2(56, 68)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gee14"]
+_data = {
+&"RESET": SubResource("Animation_gee14"),
+&"explosion_end": SubResource("Animation_vtaks"),
+&"explosion_start": SubResource("Animation_0tnpc"),
+&"thumbs_up": SubResource("Animation_u5sy4")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
+atlas = ExtResource("8_gee14")
+region = Rect2(0, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtaks"]
+atlas = ExtResource("8_gee14")
+region = Rect2(71, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
+atlas = ExtResource("8_gee14")
+region = Rect2(142, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
+atlas = ExtResource("8_gee14")
+region = Rect2(213, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
+atlas = ExtResource("8_gee14")
+region = Rect2(284, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
+atlas = ExtResource("8_gee14")
+region = Rect2(355, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir15t"]
+atlas = ExtResource("8_gee14")
+region = Rect2(426, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca42v"]
+atlas = ExtResource("8_gee14")
+region = Rect2(497, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rysoc"]
+atlas = ExtResource("8_gee14")
+region = Rect2(568, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssvqc"]
+atlas = ExtResource("8_gee14")
+region = Rect2(639, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_264po"]
+atlas = ExtResource("8_gee14")
+region = Rect2(710, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kice"]
+atlas = ExtResource("8_gee14")
+region = Rect2(781, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5newe"]
+atlas = ExtResource("8_gee14")
+region = Rect2(852, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37s47"]
+atlas = ExtResource("8_gee14")
+region = Rect2(923, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt5mj"]
+atlas = ExtResource("8_gee14")
+region = Rect2(994, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1065, 0, 71, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1136, 0, 71, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhx41"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tnpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtaks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvpfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dinhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvuet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trtic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir15t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca42v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rysoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssvqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_264po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kice")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5newe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37s47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt5mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1j6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl11u")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 40.0
+}]
 
 [node name="Game" type="Node2D" unique_id=2136221372]
 script = ExtResource("1_lbhrr")
@@ -42,6 +341,7 @@ unique_name_in_owner = true
 layout_mode = 1
 
 [node name="Buttons" type="Control" parent="UI" unique_id=727562961]
+unique_name_in_owner = true
 z_index = 1
 layout_mode = 1
 anchor_right = 0.84400004
@@ -52,45 +352,45 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 
-[node name="Forward" type="Button" parent="UI/Buttons" unique_id=941350130]
+[node name="Forward" type="TextureButton" parent="UI/Buttons" unique_id=1141831856]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 167.0
+offset_left = 172.0
 offset_top = 35.0
-offset_right = 192.0
-offset_bottom = 50.0
-theme_override_font_sizes/font_size = 4
-text = "Forward"
+offset_right = 188.0
+offset_bottom = 51.0
+texture_normal = SubResource("AtlasTexture_bhx41")
+texture_hover = SubResource("AtlasTexture_sgl2t")
 
-[node name="Right" type="Button" parent="UI/Buttons" unique_id=1505549595]
+[node name="Right" type="TextureButton" parent="UI/Buttons" unique_id=1464764348]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 229.0
-offset_top = 43.0
-offset_right = 248.0
-offset_bottom = 58.0
-theme_override_font_sizes/font_size = 4
-text = "Right"
+offset_left = 227.0
+offset_top = 36.0
+offset_right = 246.0
+offset_bottom = 52.0
+texture_normal = SubResource("AtlasTexture_qnb83")
+texture_hover = SubResource("AtlasTexture_qouja")
 
-[node name="Left" type="Button" parent="UI/Buttons" unique_id=1367166408]
+[node name="Left" type="TextureButton" parent="UI/Buttons" unique_id=1524255997]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 114.0
-offset_top = 41.0
-offset_right = 130.0
-offset_bottom = 56.0
-theme_override_font_sizes/font_size = 4
-text = "Left"
+offset_left = 112.0
+offset_top = 35.0
+offset_right = 128.0
+offset_bottom = 51.0
+texture_normal = SubResource("AtlasTexture_sww3w")
+texture_hover = SubResource("AtlasTexture_wljb1")
 
-[node name="Back" type="Button" parent="UI/Buttons" unique_id=1560689510]
+[node name="Back" type="TextureButton" parent="UI/Buttons" unique_id=1512572335]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 51.0
-offset_top = 18.0
-offset_right = 69.0
-offset_bottom = 33.0
-theme_override_font_sizes/font_size = 4
-text = "Back"
+offset_left = 53.0
+offset_top = 23.0
+offset_right = 71.0
+offset_bottom = 39.0
+texture_normal = SubResource("AtlasTexture_suyxu")
+texture_hover = SubResource("AtlasTexture_v2yb1")
 
 [node name="PuzzleMenu" parent="UI" unique_id=1020153591 instance=ExtResource("6_p57ef")]
 unique_name_in_owner = true
@@ -103,6 +403,19 @@ unique_name_in_owner = true
 visible = false
 z_index = 3
 layout_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1819026898]
+libraries/ = SubResource("AnimationLibrary_gee14")
+
+[node name="GameSprites" type="Node" parent="." unique_id=609317357]
+
+[node name="Explosion" type="AnimatedSprite2D" parent="GameSprites" unique_id=604911294]
+visible = false
+position = Vector2(183, 69)
+sprite_frames = SubResource("SpriteFrames_bhx41")
+animation = &"explode"
+frame = 16
+frame_progress = 1.0
 
 [connection signal="act" from="UI/Menu" to="." method="_on_menu_act"]
 [connection signal="show_map" from="UI/Menu" to="." method="_on_menu_show_map"]

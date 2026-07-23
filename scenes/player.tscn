@@ -104,5 +104,3 @@ script = ExtResource("1_qhqgy")
 sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"thumbs_up"
 autoplay = "idle"
-frame = 9
-frame_progress = 1.0
