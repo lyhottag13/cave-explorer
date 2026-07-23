@@ -93,8 +93,7 @@ stream = ExtResource("4_jix8l")
 volume_db = 10.0
 autoplay = true
 
-[node name="GameDoneScreen" type="Control" parent="." unique_id=1500334951]
-visible = false
+[node name="Game Done Screen" type="Control" parent="." unique_id=1500334951]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +101,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="GameDoneScreen" unique_id=728329214]
+[node name="ColorRect" type="ColorRect" parent="Game Done Screen" unique_id=728329214]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,7 +109,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="GameDoneScreen" unique_id=1806809542]
+[node name="Label" type="Label" parent="Game Done Screen" unique_id=1806809542]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0

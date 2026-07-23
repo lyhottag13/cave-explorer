@@ -243,6 +243,7 @@ func _on_puzzle_menu_puzzle_menu_closed() -> void:
 	can_move = true
 	
 func door_pressed() -> void:
+	FileAccess.open("user://game_done", FileAccess.WRITE).store_line("cool :)")
 	OS.shell_open("https://lyhottag13.github.io/shop")
 	if OS.get_name() == "Web":
 		await get_window().focus_exited
