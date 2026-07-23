@@ -87,6 +87,19 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("move_right"):
 		right.pressed.emit()
 
+var starting_strength := 10
+var current_strength := 0.0
+var shake_fade := 4
+var shake_end := 0.1
+
+func start_shake():
+	current_strength = starting_strength
+
+func _physics_process(delta: float) -> void:
+	if current_strength > shake_end:
+		position = Vector2(randf_range(-current_strength, current_strength), randf_range(-current_strength, current_strength))
+		current_strength = lerpf(current_strength, 0, delta * shake_fade)
+
 func draw_buttons(room_index: int):
 	buttons.show()
 	var room: Dictionary[String, int] = room_props[room_index].connections
@@ -191,6 +204,7 @@ func handle_explosion() -> void:
 	rooms[2].show_dynamite()
 	animation_player.play("explosion_start")
 	await animation_player.animation_finished
+	start_shake()
 	is_debris_cleared = true
 	rooms[2].hide_debris()
 	print("Explosion!")
